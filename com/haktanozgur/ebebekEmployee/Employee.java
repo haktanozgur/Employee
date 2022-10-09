@@ -123,7 +123,7 @@ public class Employee {
 
 	}
 	
-	public void maasHesapla() {
+	public void salaryMethod() {
 		
 		tax();
 		bonus();
@@ -149,11 +149,13 @@ public class Employee {
 		
 		Employee calisan = new Employee("Haktan Özgür", 15000, 47, 2021);
 		
-	    calisan.maasHesapla();
+	    calisan.salaryMethod();
 		
 		System.out.println(calisan.toString());
 		
 	}
+	
+	
 	
 	
 	
