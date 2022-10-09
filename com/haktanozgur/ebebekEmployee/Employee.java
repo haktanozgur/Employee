@@ -4,15 +4,15 @@ package com.haktanozgur.ebebekEmployee;
 
 public class Employee {
 
-	private final String name;
+	public final String name;
 	
-	private double salary;
+	public double salary;
 	
-	private int workHours;
+	public int workHours;
 	
-	private int hireYear;
+	public int hireYear;
 	
-	char tl = '\u20BA';
+	public char tl = '\u20BA';
 
 	public Employee(String name, double salary, int workHours, int hireYear) {
 		super();
@@ -22,42 +22,6 @@ public class Employee {
 		this.hireYear = hireYear;
 	}
 
-
-	public String getName() {
-		return name;
-	}
-
-
-
-
-	public double getSalary() {
-		return salary;
-	}
-
-
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-
-
-	public int getWorkHours() {
-		return workHours;
-	}
-
-
-	public void setWorkHours(int workHours) {
-		this.workHours = workHours;
-	}
-
-
-	public int getHireYear() {
-		return hireYear;
-	}
-
-
-	public void setHireYear(int hireYear) {
-		this.hireYear = hireYear;
-	}
 	
 	public void tax() {
 		
