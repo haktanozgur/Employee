@@ -22,9 +22,7 @@ public class Employee {
 		this.hireYear = hireYear;
 	}
 
-	
-	
-    char tl = '\u20BA';
+    
 	
 	public double tax() {
 		
@@ -64,35 +62,46 @@ public class Employee {
 	
 	int raiseCount = 0;
 	
+	double raiseSalaryPay = 0;
+	
 	public double raiseSalary() {
 		
+		
 		if(2021 - hireYear < 10 && hireYear <= 2021 ) {
-			
 
+			raiseSalaryPay += salary * 5/100;
 			
 			salary += salary * 5/100;
+			
+			raiseCount++;
 			
 		}
 		else if (2021 - hireYear > 9 && 2021 - hireYear < 20) {
 			
+			raiseSalaryPay += salary * 10/100;
 			
 			salary += salary * 10/100;
+			
+			raiseCount++;
 		}
 		
 		else if (2021 - hireYear > 19 ) {
 			
+			raiseSalaryPay += salary * 15/100;
 			
 			salary += salary * 15/100;
+			
+			raiseCount++;
 		}
 		
 		else {
 			
-			System.out.println("Çalışma Yılına Göre Bonus Verilmemiştir...");
+			raiseSalaryPay = 0;
 		}
 		
-		raiseCount++;
 		
-		return  salary;	
+		
+		return  raiseSalaryPay;	
 
 	}
 	
@@ -102,7 +111,14 @@ public class Employee {
     
 	public String toString() {
     	
+    	char tl = '\u20BA';
+    	
     	int extraHours = (workHours-40);
+  
+    	if(extraHours < 0) {
+    		
+    		extraHours = 0;
+    	}
     	
    	    double getInfoSalary = salary - tax() + bonus();
    	    
@@ -112,36 +128,36 @@ public class Employee {
 	            + " \n Çalışanın Adı Ve Soyadı : " + name 
 	  		    + "\n Çalışanın Maaşı : "  + salary + tl
 				+ " \n Toplam Çalışma Saati : " + workHours
-				+ "\n İşe Girdiği Yıl :" + hireYear
+				+ "\n İşe Girdiği Yıl : " + hireYear
 				+ "\n Fazladan " + extraHours + " Saat Çalışma Durumuna Göre Uygulanan Bonus : " +bonus()+  tl
 				+ "\n Maaş Durumuna Göre Uygulanan Vergi : " + tax() + tl
 				+ "\n Vergi Ve Bonuslar Hesaplandıktan Sonraki Toplam Maaş : "  + getInfoSalary + tl
 				+ "\n Şimdiye Kadar Yapılmış Yıılık Zam Sayısı : " + raiseCount 
+				+ "\n Çalışanın Şimdiye Kadar Aldığı Toplam Zam Miktarı : " + raiseSalaryPay + tl
 				+ "\n *****************";
 				
 	}
 	
 	public static void main(String[] args) {
 		
-		Employee employee1 = new Employee("Haktan Özgür", 20000, 50, 2012);
+		Employee employee1 = new Employee("Haktan Özgür", 20000, 47 , 2020);
 		
 		System.out.println(employee1.toString());
 		
+		employee1.raiseSalary();
 		employee1.raiseSalary();
 		
 		/*raiseSalary() metodunu yıllık zam olduğu için main içerisinde 
 		çağırarak maaş artışı yapmayı daha uygun gördüm.Bu metod her 
 		çağırıldığında çalışanın maaşına, çalıştığı yıl miktarına göre 
-		zam yapılarak hesaplanacaktır.*/
+		zam yapılarak hesaplanacaktır.Örnekte ise Çalışanın maaşına 2 
+		kez yıllık zam uygulanmıştır.*/
 		
 		System.out.println(employee1.toString());
 		
-
-		
+	
 		
 	}
-	
-	
 	
 	
 	
