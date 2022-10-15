@@ -12,7 +12,7 @@ public class Employee {
 	
 	public int hireYear;
 	
-	public char tl = '\u20BA';
+	
 
 	public Employee(String name, double salary, int workHours, int hireYear) {
 		super();
@@ -23,57 +23,64 @@ public class Employee {
 	}
 
 	
-	public void tax() {
+	
+    char tl = '\u20BA';
+	
+	public double tax() {
+		
+		double taxAmount;
 		
 		if(salary > 1000) {
 			
-			System.out.println("Uygulalan vergi : " + salary * 3/100 + tl);
-			
-			salary -= salary * 3/100;
+			taxAmount = (bonus()+ salary) * 3/100;
 					
 			
 		}
 		
 		else {
 			
-			System.out.println("Vergi Uygulanmamıştır...");
+			taxAmount = 0;
 		}		
 		
-		
+		return taxAmount;
 	}
 	
-	public void bonus() {
+	public int bonus() {
+		
+		int extraHoursPay;
 		
 		if(workHours > 40) {
+		
 			
-			System.out.println("Fazladan " + (workHours - 40) +  " Saat Çalışma Süresine Göre Verilen Bonus : " + (workHours - 40) * 30 + tl );
-			
-			salary += (workHours - 40) * 30;
+			extraHoursPay = (workHours - 40) * 30;
 		}
 		else {
-			System.out.println("Çalışma Saatine Göre Bonus Eklenmemiştir...");
+			extraHoursPay = 0;
 		}
+		
+		return extraHoursPay;
 
 	}	
-	public void raiseSalary() {
+	
+	int raiseCount = 0;
+	
+	public double raiseSalary() {
 		
 		if(2021 - hireYear < 10 && hireYear <= 2021 ) {
 			
-			System.out.println("Çalışma Yılına Göre Verilen Bonus : " + salary * 5/100 + tl);
+
 			
 			salary += salary * 5/100;
 			
 		}
 		else if (2021 - hireYear > 9 && 2021 - hireYear < 20) {
 			
-			System.out.println("Çalışma Yılına Göre Verilen Bonus : " + salary * 10/100 + tl);
 			
 			salary += salary * 10/100;
 		}
 		
 		else if (2021 - hireYear > 19 ) {
 			
-			System.out.println("Çalışma Yılına Göre Verilen Bonus : " + salary * 15/100 + tl);
 			
 			salary += salary * 15/100;
 		}
@@ -83,39 +90,54 @@ public class Employee {
 			System.out.println("Çalışma Yılına Göre Bonus Verilmemiştir...");
 		}
 		
+		raiseCount++;
 		
+		return  salary;	
 
 	}
 	
-	public void salaryMethod() {
-		
-		tax();
-		bonus();
-		raiseSalary();
-		
-		
-	}
-	
+
 	
     @Override
     
 	public String toString() {
+    	
+    	int extraHours = (workHours-40);
+    	
+   	    double getInfoSalary = salary - tax() + bonus();
+   	    
+    
+    	
 		return " \n *****************" 
 	            + " \n Çalışanın Adı Ve Soyadı : " + name 
-				+ "\n Çalışanın Maaşı : " + salary 
-				+ tl + " \n Toplam Çalışma Saati : " + workHours
+	  		    + "\n Çalışanın Maaşı : "  + salary + tl
+				+ " \n Toplam Çalışma Saati : " + workHours
 				+ "\n İşe Girdiği Yıl :" + hireYear
+				+ "\n Fazladan " + extraHours + " Saat Çalışma Durumuna Göre Uygulanan Bonus : " +bonus()+  tl
+				+ "\n Maaş Durumuna Göre Uygulanan Vergi : " + tax() + tl
+				+ "\n Vergi Ve Bonuslar Hesaplandıktan Sonraki Toplam Maaş : "  + getInfoSalary + tl
+				+ "\n Şimdiye Kadar Yapılmış Yıılık Zam Sayısı : " + raiseCount 
 				+ "\n *****************";
 				
 	}
 	
 	public static void main(String[] args) {
 		
-		Employee calisan = new Employee("Haktan Özgür", 15000, 47, 2021);
+		Employee employee1 = new Employee("Haktan Özgür", 20000, 50, 2012);
 		
-	    calisan.salaryMethod();
+		System.out.println(employee1.toString());
 		
-		System.out.println(calisan.toString());
+		employee1.raiseSalary();
+		
+		/*raiseSalary() metodunu yıllık zam olduğu için main içerisinde 
+		çağırarak maaş artışı yapmayı daha uygun gördüm.Bu metod her 
+		çağırıldığında çalışanın maaşına, çalıştığı yıl miktarına göre 
+		zam yapılarak hesaplanacaktır.*/
+		
+		System.out.println(employee1.toString());
+		
+
+		
 		
 	}
 	
